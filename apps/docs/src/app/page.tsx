@@ -1,6 +1,6 @@
+import { InstallSection } from '../components/install/install-section';
 import { FeatureGrid } from './feature-grid';
 import { HeroSection } from './hero-section';
-import { InstallSection } from './install-section';
 import { TerminalPreview } from './terminal-preview';
 
 export default function HomePage() {
