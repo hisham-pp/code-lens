@@ -1,6 +1,6 @@
 {
   "name": "@code-lense/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Core repository intelligence and analysis engine for Code Lense",
   "type": "module",
   "main": "./dist/index.js",

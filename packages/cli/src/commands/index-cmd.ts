@@ -28,6 +28,11 @@ export async function indexCommand(
         : `[${indexed}/${total}] Indexing files...`;
       process.stdout.write(`\r${Format.info(message)}`.padEnd(80));
     },
+    onEmbeddingProgress: (completed: number, total: number) => {
+      process.stdout.write(
+        `\r${Format.info(`[${completed}/${total}] Building embeddings...`)}`.padEnd(80),
+      );
+    },
   });
 
   process.stdout.write('\n');

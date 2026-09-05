@@ -62,16 +62,26 @@ export class CodeLense {
     options: {
       force?: boolean;
       onProgress?: (indexed: number, total: number, file: string) => void;
+      onEmbeddingProgress?: (completed: number, total: number) => void;
     } = {},
   ): Promise<IndexingReport> {
     const indexer = new IncrementalIndexer(this.rootPath, this.db, options);
     const report = await indexer.index();
     if (this.embeddingProvider) {
-      report.embeddingsGenerated = await backfillChunkEmbeddings(
-        this.db,
-        this.repositoryId,
-        this.embeddingProvider,
-      );
+      try {
+        report.embeddingsGenerated = await backfillChunkEmbeddings(
+          this.db,
+          this.repositoryId,
+          this.embeddingProvider,
+          options.onEmbeddingProgress,
+        );
+      } catch (err: unknown) {
+        report.errors.push({
+          path: 'embeddings',
+          error: err instanceof Error ? err.message : String(err),
+        });
+        report.filesFailed += 1;
+      }
     }
     return report;
   }

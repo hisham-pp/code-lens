@@ -22,6 +22,7 @@ export class OllamaEmbeddingProvider implements EmbeddingProvider {
     const res = await fetch(`${this.endpoint}/api/embeddings`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      signal: AbortSignal.timeout(30_000),
       body: JSON.stringify({
         model: this.model,
         prompt: text,

@@ -15,7 +15,7 @@ const program = new Command();
 program
   .name('code-lense')
   .description('Local-first repository intelligence for developers')
-  .version('0.2.0')
+  .version('0.2.1')
   .addHelpCommand(false);
 
 program

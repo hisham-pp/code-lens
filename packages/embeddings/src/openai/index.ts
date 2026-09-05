@@ -37,6 +37,7 @@ export class OpenAIEmbeddingProvider implements EmbeddingProvider {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.apiKey}`,
       },
+      signal: AbortSignal.timeout(30_000),
       body: JSON.stringify({
         model: this.model,
         input: texts,

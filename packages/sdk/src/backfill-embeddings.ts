@@ -5,28 +5,47 @@ export async function backfillChunkEmbeddings(
   db: RepositoryDatabase,
   repositoryId: string,
   embeddingProvider: EmbeddingProvider,
+  onProgress?: (completed: number, total: number) => void,
 ): Promise<number> {
-  const missingChunkStmt = db.db.prepare(`
-    SELECT c.id, c.content
-    FROM chunks c
-    LEFT JOIN vectors v ON c.id = v.id
-    WHERE c.repository_id = ? AND v.id IS NULL
-    LIMIT 500
-  `);
+  const countRow = db.db
+    .prepare(
+      `
+      SELECT COUNT(*) as count
+      FROM chunks c
+      LEFT JOIN vectors v ON c.id = v.id
+      WHERE c.repository_id = ? AND v.id IS NULL
+    `,
+    )
+    .get(repositoryId) as { count: number };
+  const total = countRow.count;
+  let completed = 0;
 
-  const missingRows = missingChunkStmt.all(repositoryId) as Array<{
-    id: string;
-    content: string;
-  }>;
-  if (missingRows.length === 0) return 0;
+  onProgress?.(completed, total);
 
-  const texts = missingRows.map((r) => r.content);
-  const embeddings = await embeddingProvider.embedBatch(texts);
-  await db.vectors.insertBatch(
-    missingRows.map((r, i) => ({
-      id: r.id,
-      embedding: embeddings[i]!,
-    })),
-  );
-  return missingRows.length;
+  while (completed < total) {
+    const missingRows = db.db
+      .prepare(
+        `
+        SELECT c.id, c.content
+        FROM chunks c
+        LEFT JOIN vectors v ON c.id = v.id
+        WHERE c.repository_id = ? AND v.id IS NULL
+        LIMIT 50
+      `,
+      )
+      .all(repositoryId) as Array<{ id: string; content: string }>;
+    if (missingRows.length === 0) break;
+
+    const embeddings = await embeddingProvider.embedBatch(missingRows.map((row) => row.content));
+    await db.vectors.insertBatch(
+      missingRows.map((row, index) => ({
+        id: row.id,
+        embedding: embeddings[index]!,
+      })),
+    );
+    completed += missingRows.length;
+    onProgress?.(completed, total);
+  }
+
+  return completed;
 }

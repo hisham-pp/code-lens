@@ -1,6 +1,6 @@
 {
   "name": "@code-lense/embeddings",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Embedding provider abstraction and implementations for Code Lense",
   "type": "module",
   "main": "./dist/index.js",

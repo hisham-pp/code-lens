@@ -1,6 +1,6 @@
 {
   "name": "@code-lense/database",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "SQLite persistence and storage repositories for Code Lense",
   "type": "module",
   "main": "./dist/index.js",
