@@ -2,6 +2,12 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { COMMAND_DOCS } from '../src/commands/help-data.js';
 import { helpCommand } from '../src/commands/help.js';
 
+// Strip ANSI escape codes so plain-text assertions work regardless of color output.
+// Uses RegExp constructor to avoid no-control-regex lint rule on the ESC byte (0x1B).
+const ESC = String.fromCharCode(27);
+const ANSI_PATTERN = new RegExp(`${ESC}\\[[0-9;]*m`, 'g');
+const stripAnsi = (str: string): string => str.replace(ANSI_PATTERN, '');
+
 describe('CLI Help Command Tests', () => {
   let logs: string[] = [];
   const origStdoutWrite = process.stdout.write;
@@ -10,11 +16,11 @@ describe('CLI Help Command Tests', () => {
   beforeEach(() => {
     logs = [];
     process.stdout.write = (chunk: unknown) => {
-      logs.push(String(chunk));
+      logs.push(stripAnsi(String(chunk)));
       return true;
     };
     process.stderr.write = (chunk: unknown) => {
-      logs.push(String(chunk));
+      logs.push(stripAnsi(String(chunk)));
       return true;
     };
   });
