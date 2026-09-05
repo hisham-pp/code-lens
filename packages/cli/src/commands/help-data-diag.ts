@@ -36,6 +36,13 @@ export const DIAG_COMMAND_DOCS: Record<string, CommandDoc> = {
     ],
     examples: ['code-lense config', 'code-lense config embedding.enabled true'],
   },
+  update: {
+    name: 'update',
+    summary: 'Update the globally installed Code Lense CLI to the latest version',
+    category: CAT_DIAG,
+    usage: 'code-lense update',
+    examples: ['code-lense update'],
+  },
   help: {
     name: 'help',
     summary: 'Display detailed help and usage examples for commands',

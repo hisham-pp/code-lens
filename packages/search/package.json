@@ -1,6 +1,6 @@
 {
   "name": "@code-lense/search",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Lexical, semantic, and hybrid search engine with multi-signal ranking for Code Lense",
   "type": "module",
   "main": "./dist/index.js",

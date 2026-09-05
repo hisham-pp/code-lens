@@ -18,21 +18,20 @@ export async function indexCommand(
   const repo = await CodeLense.open(targetPath, config);
 
   log.info(`Indexing repository at ${pc.bold(repo.rootPath)}...`);
+  log.info('Scanning repository files...');
 
   const report = await repo.index({
     force: options.force,
-    onProgress: options.verbose
-      ? (indexed: number, total: number, file: string) => {
-          process.stdout.write(
-            `\r${Format.info(`[${indexed}/${total}] Processing ${file}...`)}`.padEnd(80),
-          );
-        }
-      : undefined,
+    onProgress: (indexed: number, total: number, file: string) => {
+      const message = options.verbose
+        ? `[${indexed}/${total}] Processing ${file}...`
+        : `[${indexed}/${total}] Indexing files...`;
+      process.stdout.write(`\r${Format.info(message)}`.padEnd(80));
+    },
   });
 
-  if (options.verbose) {
-    process.stdout.write('\n');
-  }
+  process.stdout.write('\n');
+  log.info('Finalizing index...');
 
   log.success(`Indexing completed in ${(report.durationMs / 1000).toFixed(2)}s`);
   log.raw(Format.divider());

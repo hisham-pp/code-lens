@@ -23,6 +23,7 @@ Usage: code-lense <command> [options] [path]
 | [`graph`](#code-lense-graph-file)     | Intelligence | Inspect dependency and dependent relationships                   |
 | [`watch`](#code-lense-watch)          | Indexing     | Watch repository for changes and re-index incrementally          |
 | [`config`](#code-lense-config)        | Config       | View or modify global and local Code Lense configuration         |
+| [`update`](#code-lense-update)        | Diagnostics  | Update the globally installed Code Lense CLI                     |
 | [`help`](#code-lense-help-command)    | Reference    | Show interactive documentation and usage examples                |
 
 ---
@@ -118,6 +119,16 @@ code-lense status [path] [options]
 - Language breakdown percentages with visual progress bars
 - Extracted symbol count (classes, interfaces, functions, components)
 - Git tracking information (branch, HEAD commit, dirty status)
+
+---
+
+## `code-lense update`
+
+Updates a globally installed Code Lense CLI to the latest published version.
+
+```bash
+code-lense update
+```
 
 ---
 

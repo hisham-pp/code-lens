@@ -31,6 +31,9 @@ code-lense status
 
 # Run system and provider diagnostics
 code-lense doctor
+
+# Update the globally installed CLI
+code-lense update
 ```
 
 ## Commands
@@ -45,6 +48,7 @@ code-lense doctor
 - `ask <question>`: Query AI with repository context for code explanations.
 - `watch`: Continuously watch for file changes and update the index incrementally.
 - `doctor`: Validate SQLite database, vector extensions, and embedding providers.
+- `update`: Update the globally installed Code Lense CLI to the latest version.
 
 ## License
 

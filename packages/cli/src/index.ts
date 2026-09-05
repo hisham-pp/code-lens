@@ -11,3 +11,4 @@ export * from './commands/graph.js';
 export * from './commands/watch.js';
 export * from './commands/doctor.js';
 export * from './commands/config.js';
+export * from './commands/update.js';
