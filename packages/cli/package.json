@@ -1,0 +1,61 @@
+{
+  "name": "code-lense",
+  "version": "0.1.0",
+  "description": "Local-first repository intelligence CLI for developers",
+  "type": "module",
+  "bin": {
+    "code-lense": "./dist/bin.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hisham-pp/code-lens.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/hisham-pp/code-lens#readme",
+  "bugs": {
+    "url": "https://github.com/hisham-pp/code-lens/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "code-analysis",
+    "repository-intelligence",
+    "local-first",
+    "cli",
+    "embeddings",
+    "search"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@code-lense/ai": "workspace:*",
+    "@code-lense/core": "workspace:*",
+    "@code-lense/database": "workspace:*",
+    "@code-lense/embeddings": "workspace:*",
+    "@code-lense/search": "workspace:*",
+    "@code-lense/sdk": "workspace:*",
+    "commander": "^13.1.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "typescript": "^5.7.3"
+  }
+}

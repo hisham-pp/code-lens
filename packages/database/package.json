@@ -1,0 +1,40 @@
+{
+  "name": "@code-lense/database",
+  "version": "0.1.0",
+  "description": "SQLite persistence and storage repositories for Code Lense",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hisham-pp/code-lens.git",
+    "directory": "packages/database"
+  },
+  "homepage": "https://github.com/hisham-pp/code-lens#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@code-lense/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "typescript": "^5.7.3"
+  }
+}

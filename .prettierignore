@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+.turbo/
+coverage/
+*.tsbuildinfo
+*.log
+.DS_Store
+pnpm-lock.yaml
+.code-lense/
+tmp/
+.next/
+out/
+**/public/search-index.json

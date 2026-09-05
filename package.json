@@ -1,0 +1,47 @@
+{
+  "name": "code-lense-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first repository intelligence engine for developers",
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:rules": "vitest run eslint-rules",
+    "prepare": "lefthook install",
+    "docs:dev": "pnpm --filter code-lense-docs dev",
+    "docs:build": "pnpm --filter code-lense-docs build",
+    "docs:start": "pnpm --filter code-lense-docs start"
+  },
+  "devDependencies": {
+    "@code-lense/core": "workspace:*",
+    "@code-lense/sdk": "workspace:*",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.13.5",
+    "eslint": "^10.9.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.12.0",
+    "lefthook": "^2.1.12",
+    "prettier": "^3.9.6",
+    "turbo": "^2.4.4",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.69.0",
+    "vitest": "^3.0.7"
+  },
+  "packageManager": "pnpm@11.1.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lefthook"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
