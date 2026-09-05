@@ -94,6 +94,9 @@ code-lense watch [path]
 # Inspect or set configuration
 code-lense config
 code-lense config embedding.enabled true
+
+# Update the globally installed CLI
+code-lense update
 ```
 
 ---

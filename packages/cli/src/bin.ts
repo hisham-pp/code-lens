@@ -7,6 +7,7 @@ import { indexCommand } from './commands/index-cmd.js';
 import { initCommand } from './commands/init.js';
 import { searchCommand } from './commands/search.js';
 import { statusCommand } from './commands/status.js';
+import { updateCommand } from './commands/update.js';
 import { ARG_PATH, DESC_PATH, DEFAULT_PATH, OPT_JSON, OPT_JSON_DESC } from './constants.js';
 
 const program = new Command();
@@ -14,7 +15,7 @@ const program = new Command();
 program
   .name('code-lense')
   .description('Local-first repository intelligence for developers')
-  .version('0.1.0')
+  .version('0.2.0')
   .addHelpCommand(false);
 
 program
@@ -55,6 +56,13 @@ program
   .option(OPT_JSON, OPT_JSON_DESC)
   .action(async (query, targetPath, options) => {
     await searchCommand(query, targetPath, options);
+  });
+
+program
+  .command('update')
+  .description('Update the globally installed Code Lense CLI')
+  .action(() => {
+    updateCommand();
   });
 
 registerAdditionalCommands(program);

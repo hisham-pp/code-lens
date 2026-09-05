@@ -1,6 +1,6 @@
 {
   "name": "code-lense",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Local-first repository intelligence CLI for developers",
   "type": "module",
   "bin": {

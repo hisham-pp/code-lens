@@ -43,6 +43,7 @@ describe('CLI Help Command Tests', () => {
       'ask',
       'doctor',
       'config',
+      'update',
       'help',
     ];
 
