@@ -24,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -64,6 +63,6 @@ jobs:
 
       - name: Publish to npm (Production)
         if: ${{ inputs.dry_run != true }}
-        run: pnpm -r publish --access public --no-git-checks --provenance
+        run: pnpm -r publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
