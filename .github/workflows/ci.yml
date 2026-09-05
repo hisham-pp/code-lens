@@ -45,8 +45,8 @@ jobs:
       - name: Typecheck monorepo
         run: pnpm typecheck
 
-      - name: Run test suites
-        run: pnpm vitest run
-
       - name: Build monorepo packages
         run: pnpm build
+
+      - name: Run test suites
+        run: pnpm vitest run
