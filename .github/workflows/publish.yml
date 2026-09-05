@@ -45,14 +45,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Verify formatting, linting, and tests
+      - name: Verify formatting and linting
         run: |
           pnpm format:check
           pnpm eslint .
-          pnpm vitest run
 
       - name: Build monorepo packages
         run: pnpm build
+
+      - name: Run test suites
+        run: pnpm vitest run
 
       - name: Publish to npm (Dry Run)
         if: ${{ inputs.dry_run == true }}
