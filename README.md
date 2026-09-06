@@ -176,6 +176,22 @@ node tests/benchmark.ts
 
 ---
 
+## Prompt
+> Add this to your agent md file (AGENT.md/CLAUDE.md/...)
+
+```md
+## Repository intelligence with Code Lense
+- Use `code-lense` commands for searching, symbol lookup, and repository analysis:
+  - `code-lense help` — View detailed help and usage examples.
+  - `code-lense status` — Check index state, file count, and language breakdown.
+  - `code-lense search <query>` — Perform code/symbol search across the project.
+  - `code-lense symbols <name>` — Inspect AST symbols and function definitions.
+  - `code-lense graph <file>` — Inspect module import dependencies.
+  - `code-lense index` — Update the local code index.
+```
+
+---
+
 ## License
 
 MIT
